@@ -1,14 +1,33 @@
 {
-  "name": "silesia-content-extractor",
+  "name": "pilchowice-digishelf-archive",
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "node src/index.js | tee output.log",
-    "test": "node --test src/**/*.test.js"
+    "extract": "node src/digishelfextractor/index.js | tee output.log",
+    "dev": "astro dev",
+    "start": "npm run prepare && astro dev",
+    "build": "npm run prepare && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "prepare": "npm run prepare:content",
+    "prepare:translation": "node src/digishelfextractor/translate.js",
+    "prepare:content": "node src/digishelfextractor/processContent.js"
   },
   "dependencies": {
+    "@astrojs/react": "^3.0.10",
+    "@astrojs/tailwind": "^5.1.0",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "astro": "^4.15.3",
     "axios": "^1.6.2",
     "chalk": "^5.3.0",
-    "p-limit": "^5.0.0"
+    "marked": "^15.0.6",
+    "openai": "^4.28.0",
+    "p-limit": "^5.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.0.1",
+    "tailwindcss": "^3.4.1",
+    "tsx": "^4.7.1"
   }
 }

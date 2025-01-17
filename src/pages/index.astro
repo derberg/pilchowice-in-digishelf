@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Gmina Pilchowice w DigiShelf">
+  <div class="container mx-auto px-4 mt-1">
+    <div class="absolute inset-0 opacity-5 bg-no-repeat bg-center" style="background-image: url('/logo.png'); background-size: 100%;"></div>
+    <div class="text-center mb-12 relative z-10">
+      <img 
+        src="/logo.png" 
+        alt="Gmina Pilchowice w DigiShelf" 
+        class="w-64 h-auto mx-auto mb-1"
+      />
+      <h1 class="text-4xl font-bold mb-4 text-[#3C2A21]  decoration-[#5C4033] decoration-2 underline-offset-4">
+        Gmina Pilchowice
+      </h1>
+      <h2 class="text-4xl font-bold mb-6 text-[#3C2A21]  decoration-[#5C4033] decoration-2 underline-offset-4">
+        w DigiShelf
+      </h2>
+      <div class="mt-8 text-center">
+        <a
+          href="/zasoby"
+          class="bg-[#3C2A21] text-white px-6 py-3 rounded-lg hover:bg-[#5C4033] hover:scale-105 transform transition-colors"
+        >
+          EKSPLORUJ ARCHIWUM
+        </a>
+      </div>
+    </div>
+    
+    <div class="prose max-w-3xl mx-auto bg-[#E5E0DA] p-6 rounded-lg shadow-md relative z-10">
+      
+      <p class="mb-4 text-[#3C2A21] leading-relaxed">
+        Witam w projekcie gromadzenia archiwów dotyczących Gminy Pilchowice. Gromadzę tu
+        wszystkie dokumenty związane z "Gminą Pilchowice" znalezione w niemieckich archiwach cyfrowej
+        biblioteki DigiShelf.
+      </p>
+
+      <p class="mb-4 text-[#3C2A21] leading-relaxed">
+        DigiShelf to cyfrowa biblioteka Common Library Network (GBV) Coordination Office (VZG) oraz
+        Library Service Center Baden-Württemberg (BSZ). Ta strona zawiera dokumenty, które
+        wspominają konkretne słowa kluczowe reprezentujące obecne i historyczne nazwy lokalnych
+        miejscowości.
+      </p>
+
+      <p class="mb-4 text-[#3C2A21] leading-relaxed">
+        Praca nad tą stroną nie jest związana z żadnymi instytucjami, a jedynie z pasją do historii. Podoba ci się co tu widzisz, możesz wyrazić swoje wsparcie stawiając mi kawkę.
+      </p>
+      
+      <div class="mt-6 text-center">
+        <a href="https://www.buymeacoffee.com/derberg" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" class="mx-auto text-center mt-2" style="height: 30px !important;width: 108px !important;" ></a>
+      </div>
+    </div>
+  </div>
+</Layout>

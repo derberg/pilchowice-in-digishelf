@@ -1,0 +1,133 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getDocuments } from '../../../lib/documents';
+import { marked } from 'marked';
+
+export async function getStaticPaths() {
+  const documents = await getDocuments();
+  return documents.map((doc, index) => ({
+    params: {
+      recordId: doc.recordId,
+      pageNumber: doc.pageNumber
+    },
+    props: {
+      document: doc,
+      previousDoc: index > 0 ? documents[index - 1] : null,
+      nextDoc: index < documents.length - 1 ? documents[index + 1] : null,
+    },
+  }));
+}
+
+const { document, previousDoc, nextDoc } = Astro.props;
+const pdfUrl = `https://www.digishelf.de/objekt/${document.recordId}/${document.pageNumber}/LOG_${document.pageNumber}/`;
+
+// Parse the Markdown content
+const translationDetails = document.translation?.details;
+let parsedDetails = '';
+if (translationDetails) {
+  parsedDetails = marked(translationDetails);
+}
+---
+
+<Layout title={`${document.newspaperTitle} - Strona ${document.pageNumber}`}>
+  <div class="container mx-auto px-6 py-12">
+
+    <div class="absolute inset-0 opacity-5 bg-center bg-contain bg-no-repeat" style="background-image: url('/logo.png');"></div>
+
+    <!-- Navigation Buttons -->
+    <div class="relative flex justify-between items-center mb-10 z-10">
+      <div class="flex-1 text-left">
+        {previousDoc && (
+          <a
+            href={`/resource/${previousDoc.recordId}/${previousDoc.pageNumber}`}
+            class="px-6 py-3 bg-[#D5CEA3] text-[#3C2A21] rounded-lg hover:bg-[#b5a896] shadow-md transition z-10"
+          >
+            Poprzednia strona
+          </a>
+        )}
+      </div>
+      <div class="flex-1 text-right">
+        {nextDoc && (
+          <a
+            href={`/resource/${nextDoc.recordId}/${nextDoc.pageNumber}`}
+            class="px-6 py-3 bg-[#D5CEA3] text-[#3C2A21] rounded-lg hover:bg-[#b5a896] shadow-md transition z-10"
+          >
+            Następna strona
+          </a>
+        )}
+      </div>
+    </div>
+
+    <div class="bg-white border rounded-lg p-8 shadow-lg">
+      <h1 class="text-4xl font-extrabold mb-6 text-[#3C2A21]">{document.newspaperTitle}</h1>
+      <div class="flex items-center gap-4 mb-6">
+        <span class="bg-[#EDE0D4] text-[#3C2A21] px-4 py-2 rounded-full text-xs font-medium shadow">
+          Rok: {document.year}
+        </span>
+        <span class="bg-[#EDE0D4] text-[#3C2A21] px-4 py-2 rounded-full text-xs font-medium shadow">
+          Strona: {document.pageNumber}
+        </span>
+      </div>
+      <p class='text-sm mb-6'>
+        <strong class="text-[#5C5346]">Słowa kluczowe:</strong> <span>{document.keywords.join(", ")}</span>
+      </p>
+      <a
+        href={pdfUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="relative inline-flex items-center gap-3 text-[#3C2A21] hover:underline text-sm font-medium  z-10"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zM13 3.5L18.5 9H13V3.5z" />
+          <path d="M9 11h6v2H9zM9 15h6v2H9z" />
+        </svg>
+        Zobacz źródło
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+
+      <!-- Translation -->
+      <div>
+        <div class="bg-[#EDE0D4] p-6 rounded-lg shadow-lg mb-6">
+          <h2 class="text-2xl font-bold mb-4 text-[#3C2A21]">Tłumaczenie - Polski</h2>
+          <p class="text-[#3C2A21] text-sm">
+            Tłumaczenie na język polski zostało wykonane automatycznie za pomocą sztucznej inteligencji. W związku z tym, mogą występować błędy w tłumaczeniu. Tłumaczenie dotyczy tylko i wyłącznie części tekstu, która zawiera słowa kluczowe.
+          </p>
+        </div>
+        { document.translation && (
+        <div class="bg-[#F5F5DC] p-6 rounded-lg shadow-lg mb-6">
+          <span class="bg-[#EDE0D4] text-[#3C2A21] px-4 py-2 rounded-full text-xs font-medium">Podsumowanie treści</span>
+          <p class="mt-4 text-sm">{document.translation?.summary}</p>
+        </div>
+        <div class="bg-[#F5F5DC] p-6 rounded-lg shadow-lg">
+          <span class="bg-[#EDE0D4] text-[#3C2A21] px-4 py-2 rounded-full text-xs font-medium">Tłumaczenie szczegółowe</span>
+          <div class="mt-4 text-sm" set:html={parsedDetails}></div>
+        </div>
+        )}
+        { !document.translation && (
+          <div class="bg-[#F5F5DC] p-6 rounded-lg shadow-lg mb-6">
+            <p class="text-m">Tłumaczenie niedostępne.</p>
+          </div>
+
+          )}
+      </div>
+
+      <!-- Source Text -->
+      <div>
+        <div class="bg-[#EDE0D4] p-6 rounded-lg shadow-lg mb-6">
+          <h2 class="text-2xl font-bold mb-4 text-[#3C2A21]">Tekst źródłowy - Niemiecki</h2>
+          <p class="text-[#3C2A21] text-sm">
+            Tekst źródłowy nie należy do najłatwiejszych do czytania ze względu na fakt iż jest to tekst zeskanowany z oryginalnego dokumentu. Nie jest to tekst "przepisany" lecz "przeczytany" przez system OCR. Co za tym idzie, mogą występować błędy w tekście i "dziwne" znaki.
+          </p>
+        </div>
+        <div class="bg-[#F5F5DC] p-6 rounded-lg shadow-lg">
+          <pre class="whitespace-pre-wrap font-mono text-sm text-[#3C2A21]">
+            {document.content}
+          </pre>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</Layout>
