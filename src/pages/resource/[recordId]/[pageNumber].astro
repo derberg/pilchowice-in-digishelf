@@ -36,28 +36,48 @@ if (translationDetails) {
 
     <!-- Navigation Buttons -->
     <div class="relative flex justify-between items-center mb-10 z-10">
-      <div class="flex-1 text-left">
+      <!-- Previous Button -->
+      <div class="flex-1 flex justify-start">
         {previousDoc && (
           <a
             href={`/resource/${previousDoc.recordId}/${previousDoc.pageNumber}`}
-            class="px-6 py-3 bg-[#D5CEA3] text-[#3C2A21] rounded-lg hover:bg-[#b5a896] shadow-md transition z-10"
+            class="flex items-center justify-center bg-[#D5CEA3] text-[#3C2A21] rounded-full hover:bg-[#b5a896] shadow-md transition w-10 h-10 md:w-auto md:h-auto md:px-6 md:py-3 md:rounded-lg"
           >
-            Poprzednia strona
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="w-6 h-6 md:hidden"
+            >
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+            </svg>
+            <span class="hidden md:inline">Poprzednia strona</span>
           </a>
         )}
       </div>
-      <div class="flex-1 text-right">
+    
+      <!-- Next Button -->
+      <div class="flex-1 flex justify-end">
         {nextDoc && (
           <a
             href={`/resource/${nextDoc.recordId}/${nextDoc.pageNumber}`}
-            class="px-6 py-3 bg-[#D5CEA3] text-[#3C2A21] rounded-lg hover:bg-[#b5a896] shadow-md transition z-10"
+            class="flex items-center justify-center bg-[#D5CEA3] text-[#3C2A21] rounded-full hover:bg-[#b5a896] shadow-md transition w-10 h-10 md:w-auto md:h-auto md:px-6 md:py-3 md:rounded-lg"
           >
-            Następna strona
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="w-6 h-6 md:hidden"
+            >
+              <path d="M8.59 7.41L10 6l6 6-6 6-1.41-1.41L13.17 12z" />
+            </svg>
+            <span class="hidden md:inline">Następna strona</span>
           </a>
         )}
       </div>
     </div>
-
+    
+    
     <div class="bg-white border rounded-lg p-8 shadow-lg">
       <h1 class="text-4xl font-extrabold mb-6 text-[#3C2A21]">{document.newspaperTitle}</h1>
       <div class="flex items-center gap-4 mb-6">
