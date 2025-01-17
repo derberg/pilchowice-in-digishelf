@@ -79,7 +79,9 @@ if (translationDetails) {
     
     
     <div class="bg-white border rounded-lg p-8 shadow-lg">
-      <h1 class="text-4xl font-extrabold mb-6 text-[#3C2A21]">{document.newspaperTitle}</h1>
+      <h1 class="text-4xl font-extrabold mb-6 text-[#3C2A21]" style="word-wrap: break-word; overflow-wrap: break-word; word-break: break-word;">
+        {document.newspaperTitle}
+      </h1>
       <div class="flex items-center gap-4 mb-6">
         <span class="bg-[#EDE0D4] text-[#3C2A21] px-4 py-2 rounded-full text-xs font-medium shadow">
           Rok: {document.year}
@@ -142,7 +144,7 @@ if (translationDetails) {
           </p>
         </div>
         <div class="bg-[#F5F5DC] p-6 rounded-lg shadow-lg">
-          <pre class="whitespace-pre-wrap font-mono text-sm text-[#3C2A21]">
+          <pre class="whitespace-pre-wrap font-mono text-sm text-[#3C2A21]" style="word-wrap: break-word; overflow-wrap: break-word; word-break: break-word;">
             {document.content}
           </pre>
         </div>
