@@ -5,7 +5,7 @@
   "scripts": {
     "extract": "node src/digishelfextractor/index.js | tee output.log",
     "dev": "astro dev",
-    "start": "npm run prepare && astro dev",
+    "start": "astro dev",
     "build": "npm run prepare && astro build",
     "preview": "astro preview",
     "astro": "astro",

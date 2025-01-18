@@ -132,10 +132,17 @@ if (translationDetails) {
       <!-- Translation -->
       <div>
         <div class="bg-[#EDE0D4] p-6 rounded-lg shadow-lg mb-6">
-          <h2 class="text-2xl font-bold mb-4 text-[#3C2A21]">Tłumaczenie - Polski</h2>
-          <p class="text-[#3C2A21] text-sm">
-            Tłumaczenie na język polski zostało wykonane automatycznie za pomocą sztucznej inteligencji. W związku z tym, mogą występować błędy w tłumaczeniu. Tłumaczenie dotyczy tylko i wyłącznie części tekstu, która zawiera słowa kluczowe.
-          </p>
+          <h2 class="text-2xl font-bold mb-4 text-[#3C2A21]">Tłumaczenie</h2>
+          <details class="relative">
+            <summary class="cursor-pointer text-sm font-medium text-[#3C2A21] underline">
+              Więcej informacji
+            </summary>
+            <p class="text-[#3C2A21] text-sm mt-2">
+              Tłumaczenie na język polski zostało wykonane automatycznie za pomocą sztucznej inteligencji. 
+              W związku z tym, mogą występować błędy w tłumaczeniu. Tłumaczenie dotyczy tylko i wyłącznie 
+              części tekstu, która zawiera słowa kluczowe.
+            </p>
+          </details>
         </div>
         { document.translation && (
         <div class="bg-[#F5F5DC] p-6 rounded-lg shadow-lg mb-6">
@@ -158,11 +165,26 @@ if (translationDetails) {
       <!-- Source Text -->
       <div>
         <div class="bg-[#EDE0D4] p-6 rounded-lg shadow-lg mb-6">
-          <h2 class="text-2xl font-bold mb-4 text-[#3C2A21]">Tekst źródłowy - Niemiecki</h2>
-          <p class="text-[#3C2A21] text-sm">
-            Tekst źródłowy nie należy do najłatwiejszych do czytania ze względu na fakt iż jest to tekst zeskanowany z oryginalnego dokumentu. Nie jest to tekst "przepisany" lecz "przeczytany" przez system OCR. Co za tym idzie, mogą występować błędy w tekście i "dziwne" znaki.
-          </p>
+          <h2 class="text-2xl font-bold mb-4 text-[#3C2A21]">Tekst źródłowy</h2>
+        
+          <details class="relative">
+            <summary class="cursor-pointer text-sm font-medium text-[#3C2A21] underline">
+              Więcej informacji
+            </summary>
+            <div class="grid grid-cols-2 gap-4 items-start mt-2">
+              <p class="text-[#3C2A21] text-sm">
+                Tekst źródłowy nie należy do najłatwiejszych do czytania ze względu na fakt, iż jest to tekst zeskanowany 
+                z oryginalnego dokumentu. Nie jest to tekst "przepisany", lecz "przeczytany" przez system OCR. 
+                Co za tym idzie, mogą występować błędy w tekście i "dziwne" znaki.
+              </p>
+              <div class="text-[#3C2A21] text-sm">
+                <!-- Optionally include additional content or a placeholder -->
+                <p>Tutaj można dodać dodatkowe informacje lub inne elementy.</p>
+              </div>
+            </div>
+          </details>
         </div>
+        
         <div class="bg-[#F5F5DC] p-6 rounded-lg shadow-lg">
           <pre class="whitespace-pre-wrap font-mono text-sm text-[#3C2A21]" style="word-wrap: break-word; overflow-wrap: break-word; word-break: break-word;">
             {document.content}
