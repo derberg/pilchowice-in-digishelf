@@ -130,7 +130,7 @@ async function processFile(filePath, existingDocuments) {
 
 async function main() {
   try {
-    const contentDir = path.join(process.cwd(), "extracted_content");
+    const contentDir = path.join(process.cwd(), "digishelf_reviewed");
     const files = await traverseDirectory(contentDir);
 
     const archivePath = path.join(process.cwd(), "archive-data.json");
