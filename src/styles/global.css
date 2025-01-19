@@ -1,0 +1,42 @@
+.markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
+    color: #3C2A21;
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .markdown p {
+    margin-bottom: 1rem;
+    color: #3C2A21;
+  }
+  
+  .markdown ul, .markdown ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .markdown li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .markdown blockquote {
+    padding-left: 1rem;
+    border-left: 4px solid #D5CEA3;
+    color: #3C2A21;
+    font-style: italic;
+    margin: 1rem 0;
+  }
+  
+  .markdown a {
+    color: #3C2A21;
+    text-decoration: underline;
+  }
+  
+  .markdown pre {
+    background-color: #EDE0D4;
+    padding: 1rem;
+    border-radius: 5px;
+    overflow-x: auto;
+    color: #3C2A21;
+    font-family: monospace;
+  }
