@@ -39,7 +39,8 @@ export const KEYWORDS = [
 	"Haselgrund",
 	"Klein-garben",
 	"Ungersch",
-  "Kleingarben"
+    "Kleingarben",
+	"Niederdorf"
 ];
 
 export const OUTPUT_DIR = "extracted_content";
