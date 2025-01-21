@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2025-01-20T18:05:14.867Z",
+  "lastUpdated": "2025-01-21T07:45:28.430Z",
   "documents": [
     {
       "newspaper": "Stockacher Tagblatt, Jg. 1929",
@@ -616,6 +616,23 @@
       "translation": {
         "summary": "Dokument zawiera informacje o różnych wydarzeniach sportowych oraz lotniczych w Niemczech, ze szczególnym uwzględnieniem zawodów w bieganiu i chodzeniu na 25 km w Ratiborze oraz konkursie modeli szybowców w Hindenburgu.",
         "details": "Marsz na 22 km\n\nZorganizowany przez okręg Gliwice w ramach Górnośląskiego Związku Gier i Łyżwiarstwa, odbył się na trasie Ostropa–Deutsch-Zernitz. Nasze zdjęcie przedstawia czołową grupę zawodników przy polskiej granicy w okolicach Nieborowic.\n\n Jednym z uczestników był stary mistrz Gottschling, który uchodzi za najpopularniejszego niemieckiego biegacza długodystansowego. Mimo wieku ponad 60 lat wziął udział w biegu na 25 kilometrów z wielkim sukcesem, będąc żywym dowodem na korzyści płynące z aktywności sportowej.\n\n ![](/misc/OberschlesienImBild1931-125-1.jpg)\n\n ![](/misc/OberschlesienImBild1931-125-2.jpg)"
+      }
+    },
+    {
+      "newspaper": "Oberschlesien im Bild 1931",
+      "recordId": "1020691654_1931",
+      "filename": "OberschlesienImBild1931-201.xml",
+      "newspaperId": "1020691654",
+      "keywords": [
+        "Pilchowitz"
+      ],
+      "newspaperTitle": "Oberschlesien im Bild 1931",
+      "year": "1931",
+      "pageNumber": "190",
+      "content": "Wallfahrer- \nZeit \nDer Spätsommer und Frühherbst ist \ndie Hauotzeit der Wallfahrten nach \nOberschlesiens Heiligem Berge. — \nNebenstehend: eine Aufnahme der \nJubiläums-Prozession aus \nHindenburg auf den Treppen \nzur Wallfahrtskirche auf dem Anna- \nberge. — Das Bild darunter zeigt \nAnnabergpilzer aus Pilchowitz, \ndas dritte Bild eine Prozession aus \nCosel \nFotos Tietz-Kadlubletz \nTag der Jugend \nAlliährlich begeht die Wander- und Sport- \nJugend mit Hilfe des Reichsausschusses \nfür Leibesübungen ein Fest wettkämpfe- \nrischer und fröhlicher Gemeinsamkeit, in \ndessen Mittelpunkt die Verfassungs-Wett- \nkämpfe stehen. Ueberall in O.-S. wurden \ndiese Veranstaltungen eindrucksvoll sel- \ntens der Jugend und ihrer Organisationen \ndurchgeführt, \nUnsere untenstehenden Bilder sind Auf- \nnahmen vom Jugendtag in Gleiwitz \nFotos Bannert",
+      "translation": {
+        "summary": "Artykuł ze zdjęciami z różnych wydarzeń",
+        "details": "Zdjęcie przedstawia pielgrzymów z Pilchowic w trakcie pielgrzymki na Świętą Górę Górnego Śląska, górę Świętej Anny.\n\n ![](/misc/OberschlesienImBild1931-201.jpg)"
       }
     }
   ]
