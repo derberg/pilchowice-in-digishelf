@@ -110,7 +110,10 @@ async function processFile(filePath, existingDocuments) {
   const keywordsArray = metadata.keywords.split(",").map((k) => k.trim());
 
   const existingDocument = existingDocuments.find(
-    (doc) => doc.recordId === metadata.recordId && doc.pageNumber === pageNumber
+    (doc) => {
+      console.log(metadata.filename, doc.filename)
+      return doc.filename === metadata.filename
+    }
   );
 
   if (existingDocument) {
