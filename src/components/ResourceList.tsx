@@ -103,7 +103,7 @@ export default function ResourceList({ documents }: Props) {
 						{/* This is gallery view and remember to modify labels in list view too */}
 						{viewMode.mode === "gallery" && (
 							<div className={viewMode.showTranslations ? "w-1/2" : "w-full"}>
-								<a href={`/resource/${doc.recordId}/${doc.pageNumber}`}>
+								<a href={`/zasoby/${doc.recordId}/${doc.pageNumber}`}>
 									<p className='text-sm mb-2'>
 										<strong>Słowa kluczowe:</strong> {doc.keywords.join(", ")}
 									</p>
@@ -128,7 +128,7 @@ export default function ResourceList({ documents }: Props) {
 						{viewMode.mode === "list" && (
 							<div className={viewMode.showTranslations ? "w-1/2" : "w-full"}>
 								<a
-									href={`/resource/${doc.recordId}/${doc.pageNumber}`}
+									href={`/zasoby/${doc.recordId}/${doc.pageNumber}`}
 									className='flex gap-4 items-start'
 								>
 									<img
