@@ -111,7 +111,6 @@ async function processFile(filePath, existingDocuments) {
 
   const existingDocument = existingDocuments.find(
     (doc) => {
-      console.log(metadata.filename, doc.filename)
       return doc.filename === metadata.filename
     }
   );
