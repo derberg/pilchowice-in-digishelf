@@ -51,13 +51,14 @@ if (translationDetails) {
         <span class="bg-[#D5CEA3] text-[#3C2A21] px-2 md:px-4 py-1 md:py-2 rounded-full text-[10px] font-small shadow whitespace-nowrap overflow-hidden truncate">
           Słowa kluczowe: {document.keywords.join(", ")}
         </span>
-        <span class="bg-[#D5CEA3] text-[#3C2A21] px-2 md:px-4 py-1 md:py-2 rounded-full text-[10px] font-small shadow whitespace-nowrap overflow-hidden truncate">
+        <span class="bg-[#D5CEA3] text-[#3C2A21] px-2 md:px-4 py-1 md:py-2 rounded-full text-[10px] font-small shadow flex items-center gap-2 whitespace-nowrap overflow-hidden truncate">
           <a
             href={pdfUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="relative inline-flex items-center gap-1 text-[#3C2A21] underline text-[10px] font-small z-10"
+            class="inline-flex items-center gap-1 underline text-[10px] font-small text-[#3C2A21] z-10"
           >
+            <!-- your SVG icon -->
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-3 h-3">
               <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zM13 3.5L18.5 9H13V3.5z" />
               <path d="M9 11h6v2H9zM9 15h6v2H9z" />
@@ -65,6 +66,15 @@ if (translationDetails) {
             Oryginał
           </a>
         </span>
+        {document.addDate && (
+          <span class="bg-[#D5CEA3] text-[#3C2A21] px-2 md:px-4 py-1 md:py-2 rounded-full text-[10px] font-small shadow flex items-center gap-2 whitespace-nowrap overflow-hidden truncate">
+            Dodano: {new Date(document.addDate).toLocaleDateString('pl-PL', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit'
+            })}
+          </span>
+        )}        
       </div>
     </div>
 

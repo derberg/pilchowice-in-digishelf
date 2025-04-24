@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "extract": "node src/digishelfextractor/index.js | tee output.log",
-    "dev": "astro dev",
+    "dev": "node scripts/addDates.js && astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",

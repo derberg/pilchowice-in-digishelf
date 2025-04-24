@@ -12,6 +12,7 @@ export interface DocumentMetadata {
 		summary: string;
 		details: string;
 	};
+	addDate: string;
 }
 
 export interface ArchiveData {
