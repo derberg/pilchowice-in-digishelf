@@ -6,7 +6,7 @@
     "extract": "node src/digishelfextractor/index.js | tee output.log",
     "dev": "node scripts/addDates.js && astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/generateSitemap.js",
     "preview": "astro preview",
     "astro": "astro",
     "prepare": "npm run prepare:content",
@@ -29,8 +29,5 @@
     "react-icons": "^5.0.1",
     "tailwindcss": "^3.4.1",
     "tsx": "^4.7.1"
-  },
-  "devDependencies": {
-    "@astrojs/sitemap": "^3.3.1"
   }
 }
