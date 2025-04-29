@@ -7,7 +7,6 @@ const now = () => new Date();
 const startOfWeek = (d: Date) => {
   const dd = new Date(d);
   const day = dd.getDay(); // 0=Sun,1=Mon
-  // assume week starts Monday, so adjust: if Sunday treat as day=7
   const shift = day === 0 ? 6 : day - 1;
   dd.setDate(dd.getDate() - shift);
   dd.setHours(0, 0, 0, 0);
@@ -41,10 +40,10 @@ const keywordGroups: Record<string, string[]> = {
   "Nieborowice": ["Nieborowice", "Nieborowitz", "Neubersdorf"],
   "Pilchowice": ["Pilchowice", "Pilchowitz", "Bilchengrund"],
   "Wilcza": ["Wilcza"],
-  "Ku\u017ania Nieborowska": ["Ku\u017ania Nieborowska", "Nieborowitz Hammer"],
+  "Kuźnia Nieborowska": ["Kuźnia Nieborowska", "Nieborowitz Hammer"],
   "Stanica": ["Stanica", "Stanitz"],
   "Leboszowice": ["Leboszowice", "Leboschowitz", "Klein-garben"],
-  "\u017Bernica": ["\u017Bernica", "Zernitz", "Haselgrund"],
+  "Żernica": ["Żernica", "Zernitz", "Haselgrund"],
 };
 const groupMap: Record<string, string> = {};
 Object.entries(keywordGroups).forEach(([label, syns]) => {
@@ -64,6 +63,7 @@ export default function ResourceList({ documents }: Props) {
   });
   const [selectedGroups, setSelectedGroups] = useState<string[]>([]);
   const [selectedDateFilter, setSelectedDateFilter] = useState<DateFilter | null>(null);
+  const [showFilters, setShowFilters] = useState(false);
 
   // derive unique group labels present in docs
   const allKeywordGroups = useMemo(() => {
@@ -123,9 +123,9 @@ export default function ResourceList({ documents }: Props) {
 
   return (
     <div className='container mx-auto px-4 mt-4'>
-      {/* view-mode controls */}
-      <div className='mb-6 flex justify-between items-center'>
-        <div className='flex gap-4 relative'>
+      {/* view-mode controls and mobile filter toggle */}
+      <div className='mb-6 flex justify-between items-center relative'>
+        <div className='flex gap-4'>
           <button
             onClick={() => setViewMode({ ...viewMode, mode: "gallery" })}
             className={`p-2 cursor-pointer ${
@@ -143,66 +143,72 @@ export default function ResourceList({ documents }: Props) {
             <FaList />
           </button>
         </div>
+        {/* tylko na mobilce */}
+        <button
+          className='md:hidden px-4 py-2 bg-[#3C2A21] text-white rounded relative'
+          onClick={() => setShowFilters(prev => !prev)}
+        >
+          {showFilters ? 'Ukryj filtry' : 'Pokaż filtry'}
+        </button>
       </div>
 
-      {/* grouped keyword filter */}
-      <div className='mb-6'>
-        <h3 className='text-lg font-semibold mb-2 text-[#3C2A21]'>
-          Filtruj według lokalizacji (grupy słów kluczowych):
-        </h3>
-        <div className='flex flex-wrap gap-2 relative'>
-          {allKeywordGroups.map(label => {
-            const syns = keywordGroups[label] || [label];
-            const others = syns.filter(s => s !== label);
-            const display = `${label}${
-              others.length ? ` (${others.join(', ')})` : ''
-            }`;
-            return (
+      {/* container filtrów: ukryty na mobile, chyba że toggled, widoczny zawsze na md+ */}
+      <div className={`${showFilters ? 'block' : 'hidden'} md:block relative`}>
+        {/* grouped keyword filter */}
+        <div className='mb-6'>
+          <h3 className='text-lg font-semibold mb-2 text-[#3C2A21]'>
+            Filtruj według lokalizacji (grupy słów kluczowych):
+          </h3>
+          <div className='flex flex-wrap gap-2 relative'>
+            {allKeywordGroups.map(label => {
+              const syns = keywordGroups[label] || [label];
+              const others = syns.filter(s => s !== label);
+              const display = `${label}${others.length ? ` (${others.join(', ')})` : ''}`;
+              return (
+                <button
+                  key={label}
+                  onClick={() =>
+                    setSelectedGroups(prev =>
+                      prev.includes(label)
+                        ? prev.filter(g => g !== label)
+                        : [...prev, label]
+                    )
+                  }
+                  className={`px-3 py-1 rounded-full cursor-pointer ${
+                    selectedGroups.includes(label)
+                      ? "bg-[#3C2A21] text-white"
+                      : "bg-[#D5CEA3]"
+                  }`}
+                >
+                  {display}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* date filter */}
+        <div className='mb-6'>
+          <h3 className='text-lg font-semibold mb-2 text-[#3C2A21]'>
+            Filtruj według daty dodania:
+          </h3>
+          <div className='flex flex-wrap gap-2 relative'>
+            {dateFilters.map(({ label, value }) => (
               <button
-                key={label}
+                key={value}
                 onClick={() =>
-                  setSelectedGroups(prev =>
-                    prev.includes(label)
-                      ? prev.filter(g => g !== label)
-                      : [...prev, label]
-                  )
+                  setSelectedDateFilter(prev => (prev === value ? null : value))
                 }
                 className={`px-3 py-1 rounded-full cursor-pointer ${
-                  selectedGroups.includes(label)
+                  selectedDateFilter === value
                     ? "bg-[#3C2A21] text-white"
                     : "bg-[#D5CEA3]"
                 }`}
               >
-                {display}
+                {label}
               </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* date filter */}
-      <div className='mb-6'>
-        <h3 className='text-lg font-semibold mb-2 text-[#3C2A21]'>
-          Filtruj według daty dodania:
-        </h3>
-        <div className='flex flex-wrap gap-2 relative'>
-          {dateFilters.map(({ label, value }) => (
-            <button
-              key={value}
-              onClick={() =>
-                setSelectedDateFilter(prev =>
-                  prev === value ? null : value
-                )
-              }
-              className={`px-3 py-1 rounded-full cursor-pointer ${
-                selectedDateFilter === value
-                  ? "bg-[#3C2A21] text-white"
-                  : "bg-[#D5CEA3]"
-              }`}
-            >
-              {label}
-            </button>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
