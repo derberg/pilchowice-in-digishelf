@@ -6,4 +6,5 @@ export default defineConfig({
   integrations: [
     tailwind(), react()
   ],
+  trailingSlash: 'never'
 });

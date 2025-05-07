@@ -1,0 +1,14 @@
+{
+    "redirects": [
+      {
+        "source": "/zasoby/:path*/",
+        "destination": "/zasoby/:path*",
+        "permanent": true
+      },
+      {
+        "source": "/zasoby/",
+        "destination": "/zasoby",
+        "permanent": true
+      }
+    ]
+}
