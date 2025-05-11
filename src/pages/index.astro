@@ -1,51 +1,42 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-
 <Layout title="Archiwa Pilchowic">
-  <div class="container mx-auto max-w-full px-4 mt-1 overflow-hidden">
-    <div class="absolute inset-0 opacity-5 bg-no-repeat bg-center" 
+  <div class="container mx-auto max-w-full px-4 mt-1">
+    <div class="absolute inset-0 opacity-5 bg-no-repeat bg-center"
          style="background-image: url('/logo.png'); background-size: 100%;"></div>
     
-         <div class="flex flex-col items-center justify-center relative z-10 mb-2 sm:flex-row">
-          <!-- Logo -->
-          <img 
-            src="/logo.png" 
-            alt="Archiwa Pilchowic" 
-            class="w-64 h-auto max-w-full sm:mr-4 sm:mb-0"
-          />
-        
-          <!-- Title and Button -->
-          <div class="text-center">
-            <h1 class="text-4xl font-bold text-[#3C2A21] decoration-[#5C4033] decoration-2 underline-offset-4">
-              Archiwa Pilchowic
-            </h1>
-            <div class="mt-4">
-              <a
-                href="/zasoby"
-                class="bg-[#3C2A21] text-white px-6 py-3 rounded-lg hover:bg-[#5C4033] hover:scale-105 transform transition-colors flex items-center gap-2 w-fit mx-auto"
-              >
-                EKSPLORUJ
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
+    <div class="flex flex-col items-center justify-center relative z-10 mb-2 sm:flex-row">
+      <img 
+        src="/logo.png" 
+        alt="Archiwa Pilchowic" 
+        class="w-64 h-auto max-w-full sm:mr-4 sm:mb-0"
+      />
+      <div class="text-center">
+        <h1 class="text-4xl font-bold text-[#3C2A21] decoration-[#5C4033] decoration-2 underline-offset-4">
+          Archiwa Pilchowic
+        </h1>
+        <div class="mt-4">
+          <a
+            href="/zasoby"
+            class="bg-[#3C2A21] text-white px-6 py-3 rounded-lg hover:bg-[#5C4033] hover:scale-105 transform transition-colors flex items-center gap-2 w-fit mx-auto"
+          >
+            EKSPLORUJ
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
         </div>
+      </div>
+    </div>
     
-    <!-- Main Content -->
     <div class="prose max-w-2xl mx-auto bg-[#E5E0DA] p-6 rounded-lg mt-8 shadow-md relative z-10">
       <p class="mb-4 text-[#3C2A21] leading-relaxed">
         Witam w projekcie gromadzenia archiwów dotyczących Gminy Pilchowice. Gromadzę tu
@@ -69,7 +60,9 @@ import Layout from '../layouts/Layout.astro';
       </p>
 
       <div class="mt-6 text-center">
-        <a href="https://www.buymeacoffee.com/derberg" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" class="mx-auto text-center mt-2" style="height: 30px !important;width: 108px !important;" ></a>
+        <a href="https://www.buymeacoffee.com/derberg" target="_blank">
+          <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" class="mx-auto mt-2" style="height: 30px !important;width: 108px !important;" />
+        </a>
       </div>
     </div>
   </div>
