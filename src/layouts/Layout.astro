@@ -20,6 +20,15 @@ const { title } = Astro.props;
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
 
+        <!-- Remove CSE Hash from URL -->
+        <script is:inline>
+          window.addEventListener('hashchange', () => {
+            console.log('Hash changed:', location.hash);
+            if (location.hash.startsWith('#gsc.')) {
+              history.replaceState(null, '', window.location.pathname);
+            }
+          });
+        </script>
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content="Archiwalne dokumenty Gminy Pilchowice znalezione w niemieckich zasobach DigiShelf." />

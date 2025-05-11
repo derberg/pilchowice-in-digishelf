@@ -18,12 +18,22 @@
     </div>
   </nav>
 
-  <!-- Fixed Search Overlay -->
-  <div id="searchBox" class="fixed top-16 right-4 w-80 bg-white rounded shadow-lg p-2 hidden z-[9999]">
-    <div class="gcse-search"></div>
-  </div>
+  <!-- Configuration to disable CSE history -->
+  <script is:inline>
+    window.__gcse = {
+      parsetags: 'explicit',
+      callback: () => {
+        google.search.cse.element.render({
+          div: 'searchBox',
+          tag: 'search',
+          attributes: { enableHistory: false }
+        });
+      }
+    };
+  </script>
 
-  <!-- Google CSE Script -->
+  <!-- CSE container and loader -->
+  <div id="searchBox" class="fixed top-16 right-4 w-80 bg-white rounded shadow-lg p-2 hidden z-[9999]"></div>
   <script async src="https://cse.google.com/cse.js?cx=b6159d59b7c2a4a9b"></script>
 
   <!-- Toggle Logic -->
@@ -36,5 +46,8 @@
         box.classList.add('hidden');
       }
     });
+    // Initial cleanup in case hash is present
+    if (location.hash.startsWith('#gsc.')) {
+      history.replaceState(null, '', window.location.pathname);
+    }
   </script>
-</header>
