@@ -41,7 +41,7 @@ const keywordGroups: Record<string, string[]> = {
   "Pilchowice": ["Pilchowice", "Pilchowitz", "Bilchengrund"],
   "Wilcza": ["Wilcza"],
   "Kuźnia Nieborowska": ["Kuźnia Nieborowska", "Nieborowitz Hammer"],
-  "Stanica": ["Stanica", "Stanitz"],
+  "Stanica": ["Stanica", "Stanitz", "Standorf"],
   "Leboszowice": ["Leboszowice", "Leboschowitz", "Klein-garben"],
   "Żernica": ["Żernica", "Zernitz", "Haselgrund"],
 };
