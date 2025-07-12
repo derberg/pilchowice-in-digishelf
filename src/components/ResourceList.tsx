@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import type { DocumentMetadata, ResourceViewMode } from "../lib/types";
 import { FaList, FaThLarge } from "react-icons/fa";
 
@@ -65,6 +65,15 @@ export default function ResourceList({ documents }: Props) {
   const [selectedDateFilter, setSelectedDateFilter] = useState<DateFilter | null>(null);
   const [showFilters, setShowFilters] = useState(false);
 
+  // --- infinite scroll states ---
+  const INCREMENT = 20;
+  const [visibleCount, setVisibleCount] = useState(INCREMENT);
+
+  // Reset visibleCount na zmianę filtrów!
+  useEffect(() => {
+    setVisibleCount(INCREMENT);
+  }, [selectedGroups, selectedDateFilter]);
+
   // derive unique group labels present in docs
   const allKeywordGroups = useMemo(() => {
     const labels = new Set<string>();
@@ -120,6 +129,27 @@ export default function ResourceList({ documents }: Props) {
       return true;
     });
   }, [documents, selectedGroups, selectedDateFilter]);
+
+  // Tylko widoczne dokumenty (windowing)
+  const visibleDocuments = useMemo(
+    () => filteredDocuments.slice(0, visibleCount),
+    [filteredDocuments, visibleCount]
+  );
+
+  // Infinite scroll handler
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 200
+      ) {
+        setVisibleCount(prev =>
+          Math.min(prev + INCREMENT, filteredDocuments.length)
+        );
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [filteredDocuments.length]);
 
   return (
     <div className='container mx-auto px-4 mt-4'>
@@ -218,7 +248,7 @@ export default function ResourceList({ documents }: Props) {
           ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6"
           : "space-y-4"
       }>
-        {filteredDocuments.map(doc => (
+        {visibleDocuments.map(doc => (
           <div
             key={`${doc.recordId}-${doc.pageNumber}`}
             className={`relative border border-[#D5CEA3] rounded-lg p-4 shadow-xl bg-[#F8F5F2] ${
@@ -236,6 +266,7 @@ export default function ResourceList({ documents }: Props) {
                   <img
                     src={`/thumbnails/${doc.recordId}.jpg`}
                     alt={`Strona ${doc.pageNumber} z ${doc.newspaperTitle}`}
+                    loading="lazy"
                     className='w-1/2 h-1/2 mx-auto object-cover mb-4 mt-4 bg-[#b5a896] border-2 border-gray-500 rounded-md'
                   />
                   <hr />
@@ -258,6 +289,7 @@ export default function ResourceList({ documents }: Props) {
                   <img
                     src={`/thumbnails/${doc.recordId}.jpg`}
                     alt={`Strona ${doc.pageNumber} z ${doc.newspaperTitle}`}
+                    loading="lazy"
                     className='w-[5%] h-auto object-cover bg-[#b5a896] border-2 border-gray-500 rounded-md'
                   />
                   <div className='flex-1'>
@@ -291,6 +323,15 @@ export default function ResourceList({ documents }: Props) {
           </div>
         ))}
       </div>
+
+      {/* Loader na dole */}
+      {visibleCount < filteredDocuments.length && (
+        <div className="text-center py-4 text-gray-500">Ładowanie...</div>
+      )}
+      {/* Komunikat jak nie ma wyników */}
+      {filteredDocuments.length === 0 && (
+        <div className="text-center py-8 text-gray-500">Brak wyników.</div>
+      )}
     </div>
   );
 }
