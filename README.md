@@ -1,5 +1,8 @@
+## Overview
 
+This is a hobby project done with passion for history: https://archiwapilchowic.org/
 
+## Dev guide
 
 
 ```bash
@@ -19,20 +22,3 @@ npm run start
 http://localhost:4321/
 
 ```
-
-
-
-
-
-
-
-
-
-
-count
-output - 60000
-output1 - 61232
-output2 - 301339
-output3 - 57756
-output4 - 11650
-
