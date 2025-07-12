@@ -20,7 +20,16 @@ function parseNewspaper(newspaper, recordId) {
 }
 
 async function traverseDirectory(dir) {
+  //put below line in try catch block and handle error that in case ENOENT is thrown it means it should stop traversing
+  try {
+    await fs.access(dir);
+  } catch (error) {
+    console.error(`Directory not found which probably means we already did our job here: ${dir}`);
+    return [];
+  }
+
   const entries = await fs.readdir(dir, { withFileTypes: true });
+
   const files = await Promise.all(
     entries.map(async (entry) => {
       const fullPath = path.join(dir, entry.name);
@@ -134,7 +143,11 @@ async function main() {
   try {
     const contentDir = path.join(process.cwd(), "digishelf_reviewed");
     const files = await traverseDirectory(contentDir);
-
+    //add code that if files is empty array then exit.  
+    if (files.length === 0) {
+      console.log("My job is doene here. No files to process.");
+      return;
+    }
     const archivePath = path.join(process.cwd(), "archive-data.json");
     let archiveData = { lastUpdated: "", documents: [] };
 
